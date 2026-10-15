@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ilamdar | علمدار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/jpg" href="images/Pen-Nib Emblem-removebg-preview.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="nib" viewBox="0 0 24 24">
+    <path d="M12 2c2.6 4.2 5.2 7.2 5.2 11.2 0 3-2.100 5.500-5.200 8.800-3.100-3.300-5.200-5.800-5.200-8.800C6.800 9.200 9.400 6.200 12 2z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M12 9.800v11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    <circle cx="12" cy="9.200" r="1.500" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="veil"></div>
+<div class="drift" aria-hidden="true"><span>ق</span><span>ع</span><span>ص</span></div>
+
+<header>
+  <a class="brand" href="#top" aria-label="Ilamdar home"><svg><use href="#nib"/></svg><b>Ilamdar</b><i>علمدار</i></a>
+  <nav aria-label="Main">
+    <a href="#languages">Languages</a>
+    <a href="#process">Process</a>
+    <a href="#features">Features</a>
+    <button class="theme" id="theme" aria-label="Switch between night and day theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.800A9 9 0 1 1 11.200 3a7 7 0 0 0 9.800 9.800z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <h1 aria-label="Ilamdar">
+      <span class="mark" aria-hidden="true">
+        <span class="wm">علمدار</span>
+        <svg class="nib-run"><use href="#nib"/></svg>
+      </span>
+      <svg class="flourish" viewBox="0 0 600 50" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#28e1ff"/><stop offset="1" stop-color="#2b6cff"/></linearGradient></defs>
+        <path d="M580 14C520 40 440 8 340 24S130 44 20 20" pathLength="1" fill="none" stroke="url(#g)" stroke-width="3.500" stroke-linecap="round"/>
+      </svg>
+      <span class="latin">Ilamdar</span>
+    </h1>
+    <p class="tag">Give it a few seconds of your voice. Ilamdar learns it, then speaks anything you write in Urdu or English.</p>
+    <p class="tag-ur ur" lang="ur" dir="rtl">آپ کی اپنی آواز، قلم کی روانی کے ساتھ</p>
+
+    <div class="search-wrap" id="studio">
+      <div class="bar" id="bar">
+        <div class="bar-inner"></div>
+        <button class="plus" id="plus" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Add a file or recording">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <input class="field" id="text" type="text" dir="auto" autocomplete="off" placeholder="Type what your voice should say" aria-label="Text to speak">
+        <div class="lang" role="group" aria-label="Speech language">
+          <button data-l="en" class="on" aria-pressed="true">EN</button>
+          <button data-l="ur" aria-pressed="false">اردو</button>
+        </div>
+        <button class="go" id="go" aria-label="Generate speech">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 7v10M17 8v8M2 11v2M22 11v2"/></svg><span>Speak</span>
+        </button>
+      </div>
+
+      <div class="menu" id="menu" role="menu" aria-label="Add to your request">
+        <button role="menuitem" data-pick="audio">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.500" cy="18" r="2.500"/><circle cx="17.500" cy="16" r="2.500"/></svg></span>
+          <span><strong>Upload audio</strong><small>MP3, WAV, M4A voice samples</small></span>
+          <span class="urd">آڈیو</span>
+        </button>
+        <button role="menuitem" data-pick="record" id="recBtn">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+          <span><strong id="recLabel">Record your voice</strong><small id="recSub">Use your microphone</small></span>
+          <span class="urd">ریکارڈ</span>
+        </button>
+        <hr>
+        <button role="menuitem" data-pick="image">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.800"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg></span>
+          <span><strong>Upload images</strong><small>PNG, JPG, WEBP</small></span>
+          <span class="urd">تصویر</span>
+        </button>
+        <button role="menuitem" data-pick="doc">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+          <span><strong>Upload documents</strong><small>PDF, DOCX, TXT to read aloud</small></span>
+          <span class="urd">دستاویز</span>
+        </button>
+      </div>
+
+      <input type="file" id="f-audio" accept="audio/*,.mp3,.wav,.m4a,.ogg" multiple hidden>
+      <input type="file" id="f-image" accept="image/*" multiple hidden>
+      <input type="file" id="f-doc" accept=".pdf,.doc,.docx,.txt,.rtf,.odt" multiple hidden>
+
+      <div class="chips" id="chips" aria-live="polite"></div>
+    </div>
+
+    <div class="try" id="try">
+      <button class="ur" data-t="السلام علیکم، میں علمدار ہوں" data-l="ur">السلام علیکم، میں علمدار ہوں</button>
+      <button data-t="Read this chapter aloud in my voice" data-l="en">Read this chapter aloud in my voice</button>
+      <button class="ur" data-t="آج کا موسم بہت خوبصورت ہے" data-l="ur">آج کا موسم بہت خوبصورت ہے</button>
+    </div>
+
+    <div class="result" id="result" aria-live="polite">
+      <h3 id="rTitle">Writing your voice</h3>
+      <p id="rSub">Ilamdar is listening to your sample.</p>
+      <div class="prog"><i id="prog"></i></div>
+      <div class="stage" id="stage"></div>
+      <div class="bars" id="rBars"></div>
+      <div class="quote" id="quote"></div>
+      <div class="demo-note">This is a front-end preview. No audio is generated until a voice engine is connected.</div>
+    </div>
+  </div>
+
+  <section id="languages">
+    <div class="wrap">
+      <h2>One voice that moves between two languages</h2>
+      <p class="lead">Write a line in English, then a line in Urdu. The same voice reads both, with the rhythm and accent of the person who recorded it.</p>
+      <div class="duo">
+        <div class="panel">
+          <h3>English</h3>
+          <blockquote>The quiet of the evening settled over the old city.</blockquote>
+          <div class="bars still" data-n="34"></div>
+        </div>
+        <div class="panel u" lang="ur">
+          <h3>اردو</h3>
+          <blockquote>شام کی خاموشی پرانے شہر پر اتر آئی۔</blockquote>
+          <div class="bars still" data-n="34"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <h2>From a short recording to a voice that writes back</h2>
+      <p class="lead">Three steps, and the first one takes less than a minute.</p>
+      <div class="path">
+        <div class="step"><b>Give a sample</b><p>Record yourself or upload 30 seconds of clear speech in an MP3, WAV or M4A file.</p></div>
+        <div class="step"><b>Ilamdar listens</b><p>It studies your pitch, pace and the way you pronounce both Urdu and English.</p></div>
+        <div class="step"><b>Type and hear</b><p>Write in either language, or attach a document, and hear it read back in your voice.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>Made for people who write in two scripts</h2>
+      <p class="lead">Built around Urdu first, so right-to-left text and Nastaliq feel natural from the first keystroke.</p>
+      <div class="feat">
+        <div><span class="k" lang="ur">دو زبانیں</span><span><h3>Urdu and English together</h3><p>Switch languages in the middle of a paragraph without changing voice.</p></span></div>
+        <div><span class="k" lang="ur">لہجہ</span><span><h3>Accent and rhythm kept</h3><p>Your pauses, stress and regional sound carry over, not a generic narrator.</p></span></div>
+        <div><span class="k" lang="ur">فائلیں</span><span><h3>Bring your own material</h3><p>Attach audio samples, documents to read aloud, or images that contain text.</p></span></div>
+        <div><span class="k" lang="ur">اختیار</span><span><h3>Your voice, under your control</h3><p>Remove a recording or a cloned voice at any time.</p></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Your voice is ready to be written down</h2>
+      <p class="ur" lang="ur">آواز کو قلم دیجیے</p>
+      <button id="again">Start with a sample</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-brand"><svg aria-hidden="true"><use href="#nib"/></svg><b>Ilamdar</b><i lang="ur">علمدار</i></div>
+  <p>&copy; 2026 Ilamdar. All rights reserved.</p>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
